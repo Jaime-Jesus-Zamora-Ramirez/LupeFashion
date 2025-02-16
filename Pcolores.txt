@@ -1,0 +1,12 @@
+Principal: #ff004a
+Complementarios:
+#ff6685 (suave)
+#b30033 (oscuro)
+#ff99b3 (claro)
+Neutrales:
+#ffffff (blanco)
+#f2f2f2 (gris claro)
+#333333 (gris oscuro)
+Contrastes:
+#ffcc00 (amarillo)
+#33ccff (azul claro)
