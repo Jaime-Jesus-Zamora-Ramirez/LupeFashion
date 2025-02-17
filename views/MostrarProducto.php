@@ -1,6 +1,15 @@
 <?php include('./partials/header.php');
 include('../database/conexion.php');
 
+if (!isset($_SESSION['usuario'])) {
+
+    header('Location: ../views/login/login.php');
+    exit(); 
+}
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); 
+}
+
 //--------------------obtener--------------------
 $ObjConexion = new conexion();
 $productos = $ObjConexion->consultar("SELECT * FROM `productos`");
@@ -13,7 +22,7 @@ if (isset($_GET['eliminar'])) {
     $ObjConexion->consultar($sql);
 
     if ($ObjConexion == true) {
-        header('location: index.php');
+        header('location: ./MostrarProducto.php');
     }
 }
 //--------------------obtener--------------------

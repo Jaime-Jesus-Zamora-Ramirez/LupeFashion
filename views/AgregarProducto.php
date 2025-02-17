@@ -1,6 +1,15 @@
-<?php 
+<?php
 include('./partials/header.php');
 include('../database/conexion.php');
+
+if (!isset($_SESSION['usuario'])) {
+
+    header('Location: ../views/login/login.php');
+    exit();
+}
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <?php
@@ -48,28 +57,39 @@ if ($_POST) {
 }
 ?>
 
+<div class="container">
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="AgregarProducto.php" method="post" enctype="multipart/form-data">
+                        <label for="txtNombre">Nombre del producto:</label>
+                        <input class="form-control" type="text" name="txtNombre" required>
 
-<form action="AgregarProducto.php" method="post" enctype="multipart/form-data">
-    <label for="txtNombre">Nombre del producto:</label>
-    <input type="text" name="txtNombre" required>
-    
-    <label for="txtDescripcion">Descripción:</label>
-    <textarea name="txtDescripcion" required></textarea>
-    
-    <label for="txtImagen_1">Imagen 1:</label>
-    <input type="file" name="txtImagen_1" required>
-    
-    <label for="txtImagen_2">Imagen 2:</label>
-    <input type="file" name="txtImagen_2">
-    
-    <label for="txtImagen_3">Imagen 3:</label>
-    <input type="file" name="txtImagen_3">
-    
-    <label for="txtCantidad">Cantidad:</label>
-    <input type="number" name="txtCantidad" required>
+                        <label for="txtDescripcion">Descripción:</label>
+                        <textarea class="form-control" name="txtDescripcion" required></textarea>
 
-    <input type="submit" value="Agregar Producto">
-</form>
+                        <label for="txtImagen_1">Imagen 1:</label>
+                        <input class="form-control" type="file" name="txtImagen_1" required>
+
+                        <label for="txtImagen_2">Imagen 2:</label>
+                        <input class="form-control" type="file" name="txtImagen_2">
+
+                        <label for="txtImagen_3">Imagen 3:</label>
+                        <input class="form-control" type="file" name="txtImagen_3">
+
+                        <label for="txtCantidad">Cantidad:</label>
+                        <input class="form-control" type="number" name="txtCantidad" required>
+                        <div class="text-center gap-2 mt-2">
+                            <a class="btn btn-danger" href="./MostrarProducto.php">Cancelar</a>
+                            <input class="btn btn-success" type="submit" value="Guardar Producto">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <?php include('./partials/footer.php') ?>
